@@ -31,10 +31,11 @@ def selection_sort(numbers, direction):
         numbers[i], numbers[min_idx] = numbers[min_idx], numbers[i]
 
     if direction == "sestupne":
-        numbers1 = numbers[::-1]
+        numbers = numbers[::-1]
     elif direction == "vzestupne":
         pass
     return numbers
+
 def bubble_sort(numbers):
     while numbers.sort():
         for idx in range(len(numbers)-1):
@@ -44,11 +45,20 @@ def bubble_sort(numbers):
                 continue
     return numbers
 
+def insertion_sort(numbers):
+    for i in range(len(numbers)):
+        for idx in range(i + 1, len(numbers)-1):
+            if numbers[idx] > numbers[idx+1]:
+                numbers[idx], numbers[idx+1] = numbers[idx+1], numbers[idx]
+
+    return numbers
+
 def main():
     numbers = read_data("numbers.csv")
     bublina = bubble_sort(numbers['series_1'])
     selekce = selection_sort(numbers['series_1'], "vzestupne")
-    print(selekce)
+    inserce = insertion_sort(numbers['series_1'])
+    print(inserce)
 
 if __name__ == '__main__':
     main()
