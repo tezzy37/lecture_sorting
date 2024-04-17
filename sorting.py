@@ -22,26 +22,33 @@ def read_data(file_name):
                     data[key].append(int(row[key]))
     return data
 
-def selection_sort(numbers1, direction):
-    while numbers1.sort():
-        for idx in range(len(numbers1)-1):
-            if numbers1[idx] > numbers1[idx+1]:
-                numbers1[idx], numbers1[idx+1] = numbers1[idx+1], numbers1[idx]
-            else:
-                continue
+def selection_sort(numbers, direction):
+    for i in range(len(numbers)):
+        min_idx = i
+        for num_idx in range(i+1, len(numbers)):
+            if numbers[min_idx] > numbers[num_idx]:
+                min_idx = num_idx
+        numbers[i], numbers[min_idx] = numbers[min_idx], numbers[i]
+
     if direction == "sestupne":
-        numbers1 = numbers1[::-1]
+        numbers1 = numbers[::-1]
     elif direction == "vzestupne":
         pass
-
-    print(numbers1)
-
+    return numbers
+def bubble_sort(numbers):
+    while numbers.sort():
+        for idx in range(len(numbers)-1):
+            if numbers[idx] > numbers[idx+1]:
+                numbers[idx], numbers[idx+1] = numbers[idx+1], numbers[idx]
+            else:
+                continue
+    return numbers
 
 def main():
     numbers = read_data("numbers.csv")
-    print(numbers)
-    numbers1 = numbers['series_1']
-    serazene = selection_sort(numbers1, "vzestupne")
+    bublina = bubble_sort(numbers['series_1'])
+    selekce = selection_sort(numbers['series_1'], "vzestupne")
+    print(selekce)
 
 if __name__ == '__main__':
     main()
