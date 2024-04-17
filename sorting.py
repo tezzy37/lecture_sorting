@@ -22,9 +22,26 @@ def read_data(file_name):
                     data[key].append(int(row[key]))
     return data
 
+def selection_sort(numbers1, direction):
+    while numbers1.sort():
+        for idx in range(len(numbers1)-1):
+            if numbers1[idx] > numbers1[idx+1]:
+                numbers1[idx], numbers1[idx+1] = numbers1[idx+1], numbers1[idx]
+            else:
+                continue
+    if direction == "sestupne":
+        numbers1 = numbers1[::-1]
+    elif direction == "vzestupne":
+        pass
+
+    print(numbers1)
+
 
 def main():
     numbers = read_data("numbers.csv")
+    print(numbers)
+    numbers1 = numbers['series_1']
+    serazene = selection_sort(numbers1, "vzestupne")
 
 if __name__ == '__main__':
     main()
